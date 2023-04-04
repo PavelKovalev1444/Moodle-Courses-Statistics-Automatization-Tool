@@ -170,20 +170,72 @@ def refactoring(courses: dict):
     for i in courses:
         if i.lower().find('cs_part') != -1:
             courses_refactored[i] = cs.refactor_cs(courses[i], 'External tool', 'Внешний инструмент', False)
-            print('Refactored ' + i + ' course')
+        #    print('Refactored ' + i + ' course')
         elif i.lower().find('linux') != -1:
             courses_refactored['linux'] = linux.refactor_linux(courses['linux'])
-            print('Refactored ' + i + ' course')
+        #    print('Refactored ' + i + ' course')
         elif i.lower().find('kw') != -1:
-            print('Refactored ' + i + ' course')
-
+                courses_refactored['kw'] = courses['kw']
+        #    print('Refactored ' + i + ' course')
         elif i.lower().find('git') != -1:
             courses_refactored['git'] = git.refactor_git(courses['git'])
+        #    print('Refactored ' + i + ' course')
+        elif i.lower().find('cs_add') != -1:
+            courses_refactored['cs_add'] = courses['cs_add']
             print('Refactored ' + i + ' course')
-        elif i.lower().find('cs_add'):
-            print('Refactored ' + i + ' course')
-
     return courses_refactored
+
+
+def merge_by_email(group: pd.DataFrame, courses: dict):
+    tmp_dict_email = {}
+    for i in courses:
+        tmp_dict_email[i] = group.merge(courses[i], how='left', left_on='email', right_on='email')
+        tmp_columns = tmp_dict_email[i].columns
+        if 'github_y' in tmp_columns:
+            tmp_dict_email[i].drop(columns={'github_y'}, inplace=True)
+        if 'first' in tmp_columns:
+            tmp_dict_email[i].drop(columns={'first'}, inplace=True)
+        if 'last' in tmp_columns:
+            tmp_dict_email[i].drop(columns={'last'}, inplace=True)
+        if 'github_x' in tmp_columns:
+            tmp_dict_email[i].rename(columns={'github_x': 'github'}, inplace=True)
+    return tmp_dict_email
+
+
+def merge_by_github(group: pd.DataFrame, courses: dict):
+    tmp_dict_github = {}
+    for i in courses:
+        if i == 'kw' or i =='cs_add':
+            tmp_dict_github[i] = group.merge(courses[i], how='left', left_on='email', right_on='email')
+        else:
+            tmp_dict_github[i] = group.merge(courses[i], how='left', left_on='github', right_on='github')
+        tmp_columns = tmp_dict_github[i].columns
+        if 'email_y' in tmp_columns:
+            tmp_dict_github[i].drop(columns={'email_y'}, inplace=True)
+        if 'first' in tmp_columns:
+            tmp_dict_github[i].drop(columns={'first'}, inplace=True)
+        if 'last' in tmp_columns:
+            tmp_dict_github[i].drop(columns={'last'}, inplace=True)
+        if 'email_x' in tmp_columns:
+            tmp_dict_github[i].rename(columns={'email_x': 'email'}, inplace=True)
+    return tmp_dict_github
+
+
+def merge_all(groups: dict, courses: dict):
+    for i in groups:
+        tmp_dict_email = merge_by_email(groups[i], courses)
+        tmp_dict_github = merge_by_github(groups[i], courses)
+        result_dict = merge_email_github(tmp_dict_email, tmp_dict_github)
+        current_keys = result_dict.keys()
+        for j in current_keys:
+            result_dict[j].sort_values(by=['ФИО'], inplace=True)
+            if str(j).find('part') != -1:
+                result_dict[j].rename(columns={'total': 'Итого баллов'}, inplace=True)
+            elif str(j).find('result') != -1:
+                result_dict[j].rename(columns={'total_1': 'Раздел 1', 'total_2': 'Раздел 2', 'total_3': 'Раздел 3', 'result': 'Итоговая оценка'}, inplace=True)
+            else:
+                result_dict[j].rename(columns={'total': 'Итого баллов', 'result': 'Итоговая оценка'}, inplace=True)
+        save_results(result_dict, './../results/' + str(i)[:4] + '.xlsx')
 
 
 if __name__ == '__main__':
@@ -195,15 +247,10 @@ if __name__ == '__main__':
     courses = get_courses()
 
     courses_refactored = refactoring(courses)
-    courses_refactored['cs_result'] = make_cs_results(courses_refactored)
-    print(courses_refactored.keys())
-    '''
-    courses_refactored['cs_part_2'] = refactor_cs(courses_refactored['cs_part_2'], 'External tool', 'Внешний инструмент', False)
-    courses_refactored['cs_part_3'] = refactor_cs(courses_refactored['cs_part_3'], 'External tool', 'Внешний инструмент', False)
-    courses_refactored['cs_result'] = make_cs_results(courses_refactored)
+    courses_refactored['cs_result'] = cs.make_cs_results(courses_refactored)
     if 'cs_add' in courses_refactored.keys():
-        courses_refactored['cs_result'] = add_cs_additional_course(courses_refactored['cs_result'], courses_refactored['cs_add'])
-    '''
+        courses_refactored['cs_result'] = cs.add_cs_additional_course(courses_refactored['cs_result'], courses_refactored['cs_add'])
+    merge_all(groups, courses_refactored)
 
 # Merging
     '''
