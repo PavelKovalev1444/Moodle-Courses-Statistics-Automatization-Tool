@@ -1,0 +1,18 @@
+{
+  "coursesInfo": [
+    {
+      "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/courses-data/Введение в Linux Grades.xlsx", 
+      "shortName": "git",
+      "maxMark": "5",
+      "isXlsx": {
+        "sheetsToProcess": [
+          ""
+        ]
+      }
+    }
+  ],
+  "studentsInfo": {
+    "studentsCathedra": "",
+    "studentsDeans": ""
+  }
+}
