@@ -18,34 +18,33 @@
 `
 
     {
-        coursesInfo: [                                      
+        coursesInfo: [                                      *список объектов с информацией об онлайн-курсах*
             {
-                "path": "",                                 
-                "shortName": "git",                         
-                "maxMark": "5",
-                "sheetName": "Информатика",
-                "tasksInfo": [
+                "path": "./courses/.xlsx",                  *путь к файлу с конкретным онлайн-курсом*
+                "courseTitle": "CS",                        *короткое название файла на английском языке*
+                "maxMark": "5",                             *максимальная оценка за курс*
+                "sheetName": "Информатика"                  *название листа в итоговом .xlsx документе*
+                "tasksInfo": [                              *информация о столбцах с заданиями*
                     {
-                        "column": "",
-                        "maxMark": ""
+                        "column": "External tool",          *название столбца с заданием*
+                        "maxMark": "1"                      *максимальная оценка за задание*
                     },
                     {
-                        "column": "",
-                        "maxMark": ""
-                    },
+                        "column": "Quiz",
+                        "maxMark": "10"
+                    }
                 ],
-                fixedColumns: [
-                    "firstName",
-                    "lastName",
-                    "email",
-                    "github"
+                fixedColumns: [                             *столбцы, относительно которых происходит обработка*
+                    "firstName": "Иван",                    *ФИО студента*
+                    "lastName": "Иван",                     *ФИО студента*
+                    "email": "ivanov.ivan@protonmail.ru",   *почта студента*
+                    "github": "ivanovIvan"                  *гитхаб студента*
                 ]
             },
-
-        ], 
-        studentsInfo: {
-            "studentsCathedra": "",
-            "studentsDeans": "",
+        ],
+        studentsInfo: {                                     *информация о студентах*
+            "studentsCathedra": "./studentsCathedra.csv",   *путь к списку информации о студентах, полученный на кафедре*
+            "studentsDeans": "./studentsDeans.csv",         *путь к списку информации о студентах, полученный в деканате*
         }
     }
 `
