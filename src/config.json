@@ -1,18 +1,66 @@
 {
   "coursesInfo": [
     {
-      "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/courses-data/Введение в Linux Grades.xlsx", 
-      "shortName": "git",
+      "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/courses-data/Основы Git Grades 07 ноября.xlsx",                                 
+      "shortName": "git",                         
+      "maxMark": 3,
+      "sheetName": "Git",
+      "tasksInfo": [
+        {
+          "column": "External tool:",
+          "maxMark": "1"
+        },
+        {
+          "column": "Quiz",
+          "maxMark": "" 
+        }
+      ],
+      "fixedColumns": [
+        "firstName",
+        "lastName",
+        "email",
+        "github"
+      ]
+    },
+    {
+      "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/courses-data/Введение в Linux Grades.xlsx",                                 
+      "shortName": "linux",                         
+      "maxMark": 3,
+      "sheetName": "Linux",
+      "tasksInfo": [
+        {
+          "column": "External tool:",
+          "maxMark": "1"
+        }
+      ],
+      "fixedColumns": [
+        "firstName",
+        "lastName",
+        "email",
+        "github"
+      ]
+    },
+    {
+      "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/courses-data/cs-first-semester Grades 01 раздел 07 ноября.xlsx",                                 
+      "shortName": "cs1",                         
       "maxMark": "5",
-      "isXlsx": {
-        "sheetsToProcess": [
-          ""
-        ]
-      }
+      "sheetName": "Информатика. Раздел 1",
+      "tasksInfo": [
+        {
+          "column": "Quiz",
+          "maxMark": ""
+        }
+      ],
+      "fixedColumns": [
+        "firstName",
+        "lastName",
+        "email",
+        "github"
+      ]
     }
-  ],
+  ], 
   "studentsInfo": {
-    "studentsCathedra": "",
-    "studentsDeans": ""
+    "studentsCathedra": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/students_data/moevm_data.csv",
+    "studentsDeans": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/students_data/deans_data.csv"
   }
 }

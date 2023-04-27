@@ -18,24 +18,34 @@
 `
 
     {
-        coursesInfo: [                                      *информация о курсах*
+        coursesInfo: [                                      
             {
-                "path": "",                                 *путь к файлу с конкретным курсом*
-                "shortName": "git",                         *короткое название файла*
-                "maxMark": "5",                             *максимальная оценка за курс*
-                "csvSettings": {                            *дополнительные настройки, если файл имеет расширение .csv*
-                    
-                },
-                "xlsxSettings": {                           *дополнительные настройки, если файл имеет расширение .xlsx*
-                    "sheetsToProcess": [                    *листы .xlsx-файла, которые надо обработать, если не заданы, то все*
-                    ]
-                }
+                "path": "",                                 
+                "shortName": "git",                         
+                "maxMark": "5",
+                "sheetName": "Информатика",
+                "tasksInfo": [
+                    {
+                        "column": "",
+                        "maxMark": ""
+                    },
+                    {
+                        "column": "",
+                        "maxMark": ""
+                    },
+                ],
+                fixedColumns: [
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "github"
+                ]
             },
 
         ], 
-        studentsInfo: {                                     *информация о студентах*
-            "studentsCathedra": "",                         *путь к списку информации о студентах, полученный на кафедре*
-            "studentsDeans": "",                            *путь к списку информации о студентах, полученный в деканате*
+        studentsInfo: {
+            "studentsCathedra": "",
+            "studentsDeans": "",
         }
     }
 `
