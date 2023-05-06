@@ -9,7 +9,6 @@ class ConfigHandler(object):
             self.courses_info = self.config['coursesInfo']
             self.students_info = self.config['studentsInfo']
         self.process_courses_info()
-        self.process_students_info()
 
 
     def process_courses_info(self):
@@ -26,12 +25,6 @@ class ConfigHandler(object):
             self.courses_paths.setdefault(course_name, course_path)
 
 
-    def process_students_info(self):
-        self.students_info = self.students_info
-        self.students_deans = self.students_info['studentsDeans']
-        self.students_cathedra = self.students_info['studentsCathedra']
-
-
     def print_error_message(param: str, obj_number: str, obj_type: str):
         print("Error in {} {}! Wrong {} param.".format(obj_type, obj_number, param))
 
@@ -45,5 +38,4 @@ class ConfigHandler(object):
     
 
     def get_students_info(self):
-        #return [self.students_deans, self.students_cathedra]
         return self.students_info

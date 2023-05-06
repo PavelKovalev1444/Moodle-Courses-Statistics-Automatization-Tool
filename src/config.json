@@ -12,14 +12,16 @@
         },
         {
           "column": "Quiz",
-          "maxMark": "" 
+          "maxMark": ""
         }
       ],
       "fixedColumns": [
-        "firstName",
+        "First name",
         "lastName",
         "email",
-        "github"
+        "github",
+        "External tool:",
+        "Quiz"
       ]
     },
     {
@@ -37,7 +39,8 @@
         "firstName",
         "lastName",
         "email",
-        "github"
+        "github",
+        "External tool:"
       ]
     },
     {
@@ -55,7 +58,8 @@
         "firstName",
         "lastName",
         "email",
-        "github"
+        "github",
+        "Quiz"
       ]
     }
   ], 
@@ -88,7 +92,8 @@
       "renameSettings": {
         "Email": "email"
       },
-      "duplicatesSubset": "ФИО" 
-    }
+      "duplicatesSubset": "ФИО"
+    },
+    "groupColumnName": "Группа"
   }
 }
