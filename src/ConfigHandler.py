@@ -27,6 +27,7 @@ class ConfigHandler(object):
 
 
     def process_students_info(self):
+        self.students_info = self.students_info
         self.students_deans = self.students_info['studentsDeans']
         self.students_cathedra = self.students_info['studentsCathedra']
 
@@ -44,4 +45,5 @@ class ConfigHandler(object):
     
 
     def get_students_info(self):
-        return [self.students_deans, self.students_cathedra]
+        #return [self.students_deans, self.students_cathedra]
+        return self.students_info

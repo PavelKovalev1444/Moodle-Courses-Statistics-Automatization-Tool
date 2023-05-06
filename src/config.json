@@ -60,7 +60,35 @@
     }
   ], 
   "studentsInfo": {
-    "studentsCathedra": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/students_data/moevm_data.csv",
-    "studentsDeans": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/students_data/deans_data.csv"
+    "studentsCathedra": {
+      "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/students_data/moevm_data.csv",
+      "fixedColumns": [
+        "Адрес электронной почты",
+        "Фамилия Имя Отчество",
+        "Номер группы",
+        "Название аккаунта на платформе https://github.com/ (если нет, надо зарегистрироваться)",
+        "Ваш никнейм на платформе http://e.moevm.info/ (если нет, надо зарегистрироваться)"
+      ],
+      "renameSettings": {
+        "Адрес электронной почты": "email",
+        "Фамилия Имя Отчество": "ФИО",
+        "Номер группы": "Группа",
+        "Название аккаунта на платформе https://github.com/ (если нет, надо зарегистрироваться)": "github",
+        "Ваш никнейм на платформе http://e.moevm.info/ (если нет, надо зарегистрироваться)": "e.moevm.info"
+      },
+      "duplicatesSubset": "ФИО"
+    },
+    "studentsDeans": {
+      "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/students_data/deans_data.csv",
+      "fixedColumns": [
+        "ФИО",
+        "Группа",
+        "Email"    
+      ],
+      "renameSettings": {
+        "Email": "email"
+      },
+      "duplicatesSubset": "ФИО"
+    }
   }
 }
