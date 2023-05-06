@@ -24,9 +24,8 @@ class StudentsHandler(object):
                     self.students.setdefault("studentsCathedra", students_data[i][i])
         self.handle_students_deans()
         self.handle_students_cathedra()
-        #self.handle_students()
-        #return sНазваниеt.parse_students(students['moevm_data'])
-        return self.students
+        self.merge_all_students()
+        return self.students['merged_students']
 
 
     def handle_students_deans(self):
@@ -38,6 +37,9 @@ class StudentsHandler(object):
         self.students["studentsDeans"].drop(columns_to_drop, inplace=True, axis=1)
         self.students["studentsDeans"].rename(columns=self.students_deans["renameSettings"], inplace=True)
         self.students["studentsDeans"].drop_duplicates(subset=self.students_deans["duplicatesSubset"], keep='last', inplace=True)
+        if "email" in self.students["studentsDeans"].columns:
+            self.students["studentsDeans"]["email"] = self.students["studentsDeans"]["email"].str.strip()
+            self.students["studentsDeans"]["email"] = self.students["studentsDeans"]["email"].str.lower()
 
 
     def handle_students_cathedra(self):
@@ -49,11 +51,30 @@ class StudentsHandler(object):
         self.students["studentsCathedra"].drop(columns_to_drop, inplace=True, axis=1)
         self.students["studentsCathedra"].rename(columns=self.students_cathedra["renameSettings"], inplace=True)
         self.students["studentsCathedra"].drop_duplicates(subset=self.students_cathedra["duplicatesSubset"], keep='last', inplace=True)
+        if "email" in self.students["studentsCathedra"].columns:
+            self.students["studentsCathedra"]["email"] = self.students["studentsCathedra"]["email"].str.strip()
+            self.students["studentsCathedra"]["email"] = self.students["studentsCathedra"]["email"].str.lower()
+        if "github" in self.students["studentsCathedra"].columns:
+            self.students["studentsCathedra"]["github"] = self.students["studentsCathedra"]["github"].str.strip()
+            self.students["studentsCathedra"]["github"] = self.students["studentsCathedra"]["github"].str.lower()
 
     
     def merge_all_students(self):
-        pass
-
+        self.students['merged_students'] = self.students["studentsDeans"].merge(
+            self.students["studentsCathedra"], 
+            how='left', 
+            left_on='email', 
+            right_on='email'
+        )
+        columns_to_drop = []
+        columns_to_rename = {}
+        for i in self.students['merged_students'].columns:
+            if i.find('_x') != -1:
+                columns_to_rename[i] = i[0:-2]
+            elif i.find('_y') != -1:
+                columns_to_drop.append(i)
+        self.students['merged_students'].drop(columns_to_drop, inplace=True, axis=1)
+        self.students['merged_students'].rename(columns=columns_to_rename, inplace=True)
     
 
     def handle_students():

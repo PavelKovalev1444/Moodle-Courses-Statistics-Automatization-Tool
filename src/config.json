@@ -88,7 +88,7 @@
       "renameSettings": {
         "Email": "email"
       },
-      "duplicatesSubset": "ФИО"
+      "duplicatesSubset": "ФИО" 
     }
   }
 }
