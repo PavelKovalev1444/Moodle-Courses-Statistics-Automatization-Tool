@@ -16,13 +16,16 @@
         }
       ],
       "fixedColumns": [
-        "First name",
-        "lastName",
         "email",
         "github",
         "External tool:",
         "Quiz"
-      ]
+      ],
+      "renameSettings": {
+        "Email address": "email",
+        "github аккаунт": "github"
+      },
+      "mergeByColumn": "email"
     },
     {
       "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/courses-data/Введение в Linux Grades.xlsx",                                 
@@ -36,17 +39,20 @@
         }
       ],
       "fixedColumns": [
-        "firstName",
-        "lastName",
         "email",
         "github",
         "External tool:"
-      ]
+      ],
+      "renameSettings": {
+        "Email address": "email",
+        "github аккаунт": "github"
+      },
+      "mergeByColumn": "email"
     },
     {
       "path": "/home/pavel/repos/Moodle-Courses-Statistics-Automatization-Tool/courses-data/cs-first-semester Grades 01 раздел 07 ноября.xlsx",                                 
       "shortName": "cs1",                         
-      "maxMark": "5",
+      "maxMark": 5,
       "sheetName": "Информатика. Раздел 1",
       "tasksInfo": [
         {
@@ -55,12 +61,15 @@
         }
       ],
       "fixedColumns": [
-        "firstName",
-        "lastName",
         "email",
         "github",
         "Quiz"
-      ]
+      ],
+      "renameSettings": {
+        "Email address": "email",
+        "github аккаунт": "github"
+      },
+      "mergeByColumn": "email"
     }
   ], 
   "studentsInfo": {

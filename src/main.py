@@ -25,7 +25,7 @@ if __name__ == '__main__':
     students = students_handler.get_student_groups()
     groups = students_handler.parse_students_into_groups()
 
-    #print(courses_info)
-    courses_handler = CourseHandler(courses_paths, courses_info, groups, students)
-    print(courses_handler.handle_courses())
+    courses_handler = CourseHandler(courses_info, groups, students)
+    courses_handled = courses_handler.handle_courses()
+    #print(courses_handled)
     
