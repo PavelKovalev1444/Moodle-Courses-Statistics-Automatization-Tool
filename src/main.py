@@ -27,5 +27,5 @@ if __name__ == '__main__':
 
     courses_handler = CourseHandler(courses_info, groups, students)
     courses_handled = courses_handler.handle_courses()
-    #print(courses_handled)
+
     
