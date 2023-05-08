@@ -7,6 +7,7 @@ from ConfigHandler import ConfigHandler
 from data_reader.DataReader import DataReader
 from students_handler.StudentsHandler import StudentsHandler
 from course_handler.CourseHandler import CourseHandler
+from data_writer.DataWriter import DataWriter
 
 parser = argparse.ArgumentParser()
     
@@ -28,4 +29,5 @@ if __name__ == '__main__':
     courses_handler = CourseHandler(courses_info, groups, students)
     courses_handled = courses_handler.handle_courses()
 
-    
+    data_writer = DataWriter(courses_handled)
+    data_writer.write_results("./results_2023")
