@@ -9,6 +9,9 @@ from students_handler.StudentsHandler import StudentsHandler
 from course_handler.CourseHandler import CourseHandler
 from data_writer.DataWriter import DataWriter
 
+import time
+from memory_profiler import profile
+
 parser = argparse.ArgumentParser()
     
 parser.add_argument("-c", action ="store", dest='configuration_file_path', required=True,
@@ -16,8 +19,8 @@ parser.add_argument("-c", action ="store", dest='configuration_file_path', requi
 
 args = parser.parse_args()
 
-
-if __name__ == '__main__':
+@profile
+def main_program():
     config_handler = ConfigHandler(args.configuration_file_path)
     students_info = config_handler.get_students_info()
     [courses_paths, courses_info] = config_handler.get_courses_info()
@@ -31,3 +34,7 @@ if __name__ == '__main__':
 
     data_writer = DataWriter(courses_handled)
     data_writer.write_results("./results_2023")
+
+
+if __name__ == '__main__':
+    main_program()
