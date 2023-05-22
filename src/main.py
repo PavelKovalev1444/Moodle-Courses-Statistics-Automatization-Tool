@@ -21,6 +21,7 @@ args = parser.parse_args()
 
 @profile
 def main_program():
+    #time_start = time.time()
     config_handler = ConfigHandler(args.configuration_file_path)
     students_info = config_handler.get_students_info()
     [courses_paths, courses_info] = config_handler.get_courses_info()
@@ -34,6 +35,10 @@ def main_program():
 
     data_writer = DataWriter(courses_handled)
     data_writer.write_results("./results_2023")
+    #time_end = time.time()
+    #print('time_start = ' + str(time_start))
+    #print('time_end = ' + str(time_end))
+    #print('time_end - time_start = ' + str(time_end - time_start))
 
 
 if __name__ == '__main__':
